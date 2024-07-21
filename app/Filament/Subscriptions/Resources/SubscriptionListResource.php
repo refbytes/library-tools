@@ -2,7 +2,7 @@
 
 namespace App\Filament\Subscriptions\Resources;
 
-use App\Filament\Subscriptions\Resources\ListResource\Pages;
+use App\Filament\Subscriptions\Resources\SubscriptionListResource\Pages;
 use App\Models\Subscriptions\SubscriptionList;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
