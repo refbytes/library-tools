@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Subscriptions;
 
-use App\Models\Subscriptions\Location;
+use App\Models\Subscriptions\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class LocationFactory extends Factory
+class CollectionFactory extends Factory
 {
-    protected $model = Location::class;
+    protected $model = Collection::class;
 
     public function definition(): array
     {

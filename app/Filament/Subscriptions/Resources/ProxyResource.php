@@ -4,10 +4,13 @@ namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\ProxyResource\Pages;
 use App\Models\Subscriptions\Proxy;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Number;
 
 class ProxyResource extends Resource
 {
@@ -19,7 +22,14 @@ class ProxyResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->required(),
+                        TextInput::make('prefix')
+                            ->label('Prefix'),
+                    ]),
             ]);
     }
 
@@ -27,7 +37,18 @@ class ProxyResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ToggleColumn::make('is_enabled')
+                    ->label('Enabled'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name'),
+                Tables\Columns\TextColumn::make('prefix')
+                    ->label('Prefix'),
+                Tables\Columns\TextColumn::make('subscriptions_count')
+                    ->label('Usages')
+                    ->counts('subscriptions')
+                    ->formatStateUsing(function ($state) {
+                        return Number::format($state);
+                    }),
             ])
             ->filters([
                 //

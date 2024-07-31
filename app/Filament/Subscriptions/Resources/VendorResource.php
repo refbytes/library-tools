@@ -3,7 +3,10 @@
 namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\VendorResource\Pages;
+use App\Filament\Subscriptions\Resources\VendorResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Vendor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,7 +22,12 @@ class VendorResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->required(),
+                    ]),
             ]);
     }
 
@@ -27,7 +35,13 @@ class VendorResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('subscriptions_count')
+                    ->label('Subscriptions')
+                    ->counts('subscriptions'),
             ])
             ->filters([
                 //
@@ -45,7 +59,7 @@ class VendorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AuthenticationsRelationManager::class,
         ];
     }
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Subscriptions;
 
-use App\Models\Subscriptions\Format;
+use App\Models\Subscriptions\Authentication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class FormatFactory extends Factory
+class AuthenticationFactory extends Factory
 {
-    protected $model = Format::class;
+    protected $model = Authentication::class;
 
     public function definition(): array
     {

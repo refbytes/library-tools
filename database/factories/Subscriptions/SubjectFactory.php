@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Subscriptions;
 
 use App\Models\Subscriptions\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;

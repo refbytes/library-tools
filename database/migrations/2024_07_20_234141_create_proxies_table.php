@@ -10,6 +10,11 @@ return new class extends Migration
     {
         Schema::create('proxies', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('prefix')
+                ->nullable();
+            $table->boolean('is_enabled')
+                ->default(true);
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();

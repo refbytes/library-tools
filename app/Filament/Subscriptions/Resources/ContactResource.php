@@ -2,8 +2,12 @@
 
 namespace App\Filament\Subscriptions\Resources;
 
+use App\Enums\ContactType;
 use App\Filament\Subscriptions\Resources\ContactResource\Pages;
 use App\Models\Subscriptions\Contact;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,7 +23,25 @@ class ContactResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->schema([
+                        Select::make('vendor_id')
+                            ->label('Vendor')
+                            ->relationship('vendor', 'name')
+                            ->required(),
+                        Select::make('type')
+                            ->label('Type')
+                            ->options(ContactType::class)
+                            ->required(),
+                        TextInput::make('name')
+                            ->label('Name'),
+                        TextInput::make('email')
+                            ->label('Email'),
+                        TextInput::make('phone')
+                            ->label('Phone'),
+                        TextInput::make('url')
+                            ->label('Url'),
+                    ]),
             ]);
     }
 
@@ -27,7 +49,25 @@ class ContactResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('vendor.name')
+                    ->label('Vendor')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('Phone')
+                    ->label('Phone')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
             ])
             ->filters([
                 //

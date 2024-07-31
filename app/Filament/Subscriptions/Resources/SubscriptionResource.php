@@ -4,6 +4,8 @@ namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 use App\Models\Subscriptions\Subscription;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,19 +21,47 @@ class SubscriptionResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->required(),
+                    ]),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->striped()
+            ->filtersTriggerAction(function ($action) {
+                return $action->button()->label('Filters');
+            })
+            ->persistSearchInSession()
+            ->persistColumnSearchesInSession()
+            ->groups([
+                'vendor.name',
+            ])
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('vendor.name')
+                    ->label('Vendor')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
             ])
             ->filters([
-                //
-            ])
+                Tables\Filters\SelectFilter::make('vendor')
+                    ->label('Vendor')
+                    ->relationship('vendor', 'name'),
+                Tables\Filters\SelectFilter::make('formats')
+                    ->label('Format')
+                    ->multiple()
+                    ->relationship('formats', 'name'),
+            ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

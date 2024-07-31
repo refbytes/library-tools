@@ -1,14 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Subscriptions;
 
-use App\Models\Subscriptions\SubscriptionList;
+use App\Models\Subscriptions\Provider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class SubscriptionListFactory extends Factory
+class ProviderFactory extends Factory
 {
-    protected $model = SubscriptionList::class;
+    protected $model = Provider::class;
 
     public function definition(): array
     {

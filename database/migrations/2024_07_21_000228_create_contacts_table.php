@@ -10,6 +10,19 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vendor_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('type');
+            $table->string('name');
+            $table->string('email')
+                ->nullable();
+            $table->string('phone')
+                ->nullable();
+            $table->longText('notes')
+                ->nullable();
+            $table->longText('url')
+                ->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();

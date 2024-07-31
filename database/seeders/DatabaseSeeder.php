@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subscriptions\Database;
+use App\Models\Subscriptions\Proxy;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,5 +27,32 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $adminUser->assignRole($admin);
+
+        $proxy = Proxy::factory()->create();
+
+        if (app()->environment(['local', 'development'])) {
+            $dbContent = file(database_path('seeders/fixtures/tbl_db_list.txt'));
+            foreach ($dbContent as $key => $line) {
+                if ($key !== 0) {
+                    if (empty($line)) {
+                        break;
+                    }
+                    $columns = explode('|', $line);
+                    if (! empty($columns[1])) {
+                        $database = new Database();
+                        // $database->vendor_id = $columns[1];
+                        $database->name = $columns[2];
+                        $database->url = $columns[4];
+                        $database->description = $columns[6];
+
+                        $database->is_public = true;
+                        $database->proxy_id = $proxy->id;
+                        $database->save();
+                        // $database->subjects()->attach($headings->where('jhu_id', $columns[0])->pluck('subject_id'));
+                    }
+                }
+            }
+        }
+
     }
 }

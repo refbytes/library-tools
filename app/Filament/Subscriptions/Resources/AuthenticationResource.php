@@ -2,31 +2,26 @@
 
 namespace App\Filament\Subscriptions\Resources;
 
-use App\Filament\Subscriptions\Resources\ProviderResource\Pages;
-use App\Models\Subscriptions\Provider;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
+use App\Filament\Subscriptions\Resources\AuthenticationResource\Pages;
+use App\Models\Subscriptions\Authentication;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class ProviderResource extends Resource
+class AuthenticationResource extends Resource
 {
-    protected static ?string $model = Provider::class;
+    protected static ?string $model = Authentication::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->required(),
-                    ]),
+                //
             ]);
     }
 
@@ -34,10 +29,7 @@ class ProviderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
-                    ->searchable()
-                    ->sortable(),
+                //
             ])
             ->filters([
                 //
@@ -62,9 +54,9 @@ class ProviderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProviders::route('/'),
-            'create' => Pages\CreateProvider::route('/create'),
-            'edit' => Pages\EditProvider::route('/{record}/edit'),
+            'index' => Pages\ListAuthentications::route('/'),
+            'create' => Pages\CreateAuthentication::route('/create'),
+            'edit' => Pages\EditAuthentication::route('/{record}/edit'),
         ];
     }
 }

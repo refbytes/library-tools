@@ -4,6 +4,8 @@ namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\SubjectResource\Pages;
 use App\Models\Subscriptions\Subject;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,7 +21,12 @@ class SubjectResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->required(),
+                    ]),
             ]);
     }
 

@@ -4,19 +4,24 @@ namespace App\Models\Subscriptions;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Wildside\Userstamps\Userstamps;
 
-class Contact extends Model
+class Authentication extends Model
 {
     use HasFactory, SoftDeletes;
-    use Userstamps;
 
     protected $guarded = ['id'];
 
-    public function vendor(): BelongsTo
+    protected function casts(): array
     {
-        return $this->belongsTo(Vendor::class);
+        return [
+            'username' => 'encrypted',
+            'password' => 'encrypted',
+        ];
+    }
+
+    public function authenticatable()
+    {
+        return $this->morphTo();
     }
 }

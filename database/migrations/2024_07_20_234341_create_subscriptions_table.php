@@ -12,6 +12,26 @@ return new class extends Migration
             $table->id();
             $table->softDeletes();
             $table->timestamps();
+            $table->string('type');
+            $table->boolean('is_public')
+                ->default(true);
+            $table->string('name');
+            $table->string('url')
+                ->nullable();
+            $table->foreignId('vendor_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->foreignId('proxy_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->longText('description')
+                ->nullable();
+            $table->longText('authenticated_description')
+                ->nullable();
+            $table->longText('internal_notes')
+                ->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
