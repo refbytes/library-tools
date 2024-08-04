@@ -8,13 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use Parental\HasChildren;
+use Spatie\Tags\HasTags;
 use Wildside\Userstamps\Userstamps;
 
 class Subscription extends Model
 {
     use HasChildren;
     use HasFactory;
+    use HasTags;
+    use Searchable;
     use SoftDeletes;
     use Userstamps;
 
@@ -54,11 +58,29 @@ class Subscription extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return match ($this->proxy->enabled) {
+                return match ($this?->proxy->enabled) {
                     true => $this->proxy->prefix.$attributes['url'],
                     false => $attributes['url'],
                 };
             },
         );
+    }
+
+    public function searchableAs(): string
+    {
+        return 'subscription_index';
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'name' => $this->name,
+            'vendor' => $this->vendor->name,
+            'description' => $this->description,
+            'url' => $this->full_url,
+            'keywords' => $this->tags->pluck('name')->toArray(),
+            'created_at' => $this->created_at->timestamp,
+        ];
     }
 }

@@ -15,7 +15,11 @@ return new class extends Migration
             $table->string('type');
             $table->boolean('is_public')
                 ->default(true);
+            $table->boolean('is_featured')
+                ->default(false);
             $table->string('name');
+            $table->string('alternate_names')
+                ->nullable();
             $table->string('url')
                 ->nullable();
             $table->foreignId('vendor_id')

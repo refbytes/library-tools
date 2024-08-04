@@ -25,7 +25,6 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^3.0",
         "meilisearch/meilisearch-php": "^1.9",
-        "openai-php/laravel": "^0.10.1",
         "owen-it/laravel-auditing": "^13.6",
         "spatie/eloquent-sortable": "^4.4",
         "spatie/laravel-login-link": "^1.3",
