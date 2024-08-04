@@ -80,7 +80,7 @@ class Subscription extends Model implements HasMedia
         return [
             'id' => (string) $this->id,
             'name' => $this->name,
-            'vendor' => $this->vendor->name,
+            'vendor' => $this->vendor?->name,
             'description' => $this->description,
             'url' => $this->full_url,
             'keywords' => $this->tags->pluck('name')->toArray(),

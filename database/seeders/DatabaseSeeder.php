@@ -52,6 +52,25 @@ class DatabaseSeeder extends Seeder
                     }
                 }
             }
+            $subjects = [
+                'Engineering' => [
+                    'Civil Engineering',
+                    'Computer Engineering',
+                    'Electrical Engineering',
+                    'Mechanical Engineering',
+                ],
+            ];
+            foreach ($subjects as $parent => $children) {
+                $parentSubject = new \App\Models\Subscriptions\Subject();
+                $parentSubject->name = $parent;
+                $parentSubject->save();
+                foreach ($children as $child) {
+                    $childSubject = new \App\Models\Subscriptions\Subject();
+                    $childSubject->name = $child;
+                    $childSubject->parent_id = $parentSubject->id;
+                    $childSubject->save();
+                }
+            }
         }
 
     }

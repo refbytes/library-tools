@@ -3,7 +3,9 @@
 namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
+use App\Filament\Subscriptions\Resources\SubscriptionResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Subscription;
+use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\RichEditor;
@@ -65,6 +67,9 @@ class SubscriptionResource extends Resource
                                             ->label('Internal Notes'),
                                     ]),
                             ]),
+                        SelectTree::make('subjects')
+                            ->enableBranchNode()
+                            ->relationship('subjects', 'name', 'parent_id'),
                         SpatieMediaLibraryFileUpload::make('thumbnail'),
                         Select::make('formats')
                             ->label('Formats')
@@ -136,7 +141,7 @@ class SubscriptionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AuthenticationsRelationManager::class,
         ];
     }
 

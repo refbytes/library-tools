@@ -10,11 +10,34 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')
+                ->nullable();
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('subjects')
+                ->nullOnDelete();
+        });
+
+        Schema::create('subject_subscription', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('subscription_id');
+
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects')
+                ->cascadeOnDelete();
+            $table->foreign('subscription_id')
+                ->references('id')
+                ->on('subscriptions')
+                ->cascadeOnDelete();
         });
     }
 
