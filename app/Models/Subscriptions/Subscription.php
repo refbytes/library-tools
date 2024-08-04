@@ -10,14 +10,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Parental\HasChildren;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 use Wildside\Userstamps\Userstamps;
 
-class Subscription extends Model
+class Subscription extends Model implements HasMedia
 {
     use HasChildren;
     use HasFactory;
     use HasTags;
+    use InteractsWithMedia;
     use Searchable;
     use SoftDeletes;
     use Userstamps;
@@ -61,6 +64,7 @@ class Subscription extends Model
                 return match ($this?->proxy->enabled) {
                     true => $this->proxy->prefix.$attributes['url'],
                     false => $attributes['url'],
+                    null => $attributes['url'],
                 };
             },
         );

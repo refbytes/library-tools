@@ -9,6 +9,7 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
@@ -34,8 +35,7 @@ class SubscriptionResource extends Resource
                             ->label('Name')
                             ->required(),
                         TextInput::make('alternate_names')
-                            ->label('Alternate Names')
-                            ->required(),
+                            ->label('Alternate Names'),
                         Select::make('vendor_id')
                             ->label('Vendor')
                             ->relationship('vendor', 'name')
@@ -57,16 +57,15 @@ class SubscriptionResource extends Resource
                                 Tabs\Tab::make('Authenticated Description')
                                     ->schema([
                                         RichEditor::make('authenticated_description')
-                                            ->label('Authenticated Description')
-                                            ->required(),
+                                            ->label('Authenticated Description'),
                                     ]),
                                 Tabs\Tab::make('Internal Notes')
                                     ->schema([
                                         RichEditor::make('description')
-                                            ->label('Internal Notes')
-                                            ->required(),
+                                            ->label('Internal Notes'),
                                     ]),
                             ]),
+                        SpatieMediaLibraryFileUpload::make('thumbnail'),
                         Select::make('formats')
                             ->label('Formats')
                             ->multiple()
