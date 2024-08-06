@@ -21,7 +21,7 @@ class AuthenticationResource extends Resource
     {
         return $form
             ->schema([
-                //
+                ...Authentication::form(),
             ]);
     }
 

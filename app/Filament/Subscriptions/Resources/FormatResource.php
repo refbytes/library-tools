@@ -4,13 +4,10 @@ namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\FormatResource\Pages;
 use App\Models\Subscriptions\Format;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Guava\FilamentIconPicker\Forms\IconPicker;
 use Guava\FilamentIconPicker\Tables\IconColumn;
 
 class FormatResource extends Resource
@@ -23,14 +20,7 @@ class FormatResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->required(),
-                        IconPicker::make('icon')
-                            ->label('Icon'),
-                    ]),
+                ...Format::form(),
             ]);
     }
 

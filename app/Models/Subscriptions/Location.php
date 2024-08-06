@@ -11,4 +11,6 @@ class Location extends Model
 {
     use HasFactory, SoftDeletes;
     use Userstamps;
+
+    protected $guarded = ['id'];
 }

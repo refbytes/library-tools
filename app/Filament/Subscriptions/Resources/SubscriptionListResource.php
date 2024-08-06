@@ -4,8 +4,6 @@ namespace App\Filament\Subscriptions\Resources;
 
 use App\Filament\Subscriptions\Resources\SubscriptionListResource\Pages;
 use App\Models\Subscriptions\SubscriptionList;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,12 +19,7 @@ class SubscriptionListResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->required(),
-                    ]),
+                ...SubscriptionList::form(),
             ]);
     }
 

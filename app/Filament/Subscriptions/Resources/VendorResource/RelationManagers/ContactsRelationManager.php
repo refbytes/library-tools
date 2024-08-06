@@ -2,21 +2,21 @@
 
 namespace App\Filament\Subscriptions\Resources\VendorResource\RelationManagers;
 
-use App\Models\Subscriptions\Authentication;
+use App\Models\Subscriptions\Contact;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class AuthenticationsRelationManager extends RelationManager
+class ContactsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'authentications';
+    protected static string $relationship = 'contacts';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                ...Authentication::form(),
+                ...Contact::form(),
             ]);
     }
 

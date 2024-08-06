@@ -2,6 +2,9 @@
 
 namespace App\Models\Subscriptions;
 
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,12 +18,14 @@ class Subject extends Model
     use HasFactory, SoftDeletes;
     use Userstamps;
 
+    protected $guarded = ['id'];
+
     public function subscriptions(): BelongsToMany
     {
         return $this->belongsToMany(Subscription::class);
     }
 
-    public function subjects(): HasMany
+    public function children(): HasMany
     {
         return $this->hasMany(Subject::class, 'parent_id');
     }
@@ -28,5 +33,20 @@ class Subject extends Model
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Subject::class, 'parent_id');
+    }
+
+    public static function form()
+    {
+        return [
+            Section::make()
+                ->schema([
+                    TextInput::make('name')
+                        ->label('Name')
+                        ->required(),
+                    Select::make('parent_id')
+                        ->label('Parent')
+                        ->relationship('parent', 'name', ignoreRecord: true),
+                ]),
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Subscriptions;
 
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,5 +29,15 @@ class Vendor extends Model
     public function authentications()
     {
         return $this->morphMany(Authentication::class, 'authenticatable');
+    }
+
+    public static function form()
+    {
+        return [
+            TextInput::make('name')
+                ->label('Name')
+                ->unique(ignoreRecord: true)
+                ->required(),
+        ];
     }
 }

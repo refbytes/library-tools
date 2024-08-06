@@ -5,17 +5,6 @@ namespace App\Filament\Subscriptions\Resources;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Subscription;
-use CodeWithDennis\FilamentSelectTree\SelectTree;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -31,68 +20,7 @@ class SubscriptionResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->required(),
-                        TextInput::make('alternate_names')
-                            ->label('Alternate Names'),
-                        Select::make('vendor_id')
-                            ->label('Vendor')
-                            ->relationship('vendor', 'name')
-                            ->required(),
-                        Select::make('proxy_id')
-                            ->label('Proxy')
-                            ->relationship('proxy', 'name'),
-                        TextInput::make('url')
-                            ->label('URL')
-                            ->required(),
-                        Tabs::make()
-                            ->tabs([
-                                Tabs\Tab::make('Description')
-                                    ->schema([
-                                        RichEditor::make('description')
-                                            ->label('Description')
-                                            ->required(),
-                                    ]),
-                                Tabs\Tab::make('Authenticated Description')
-                                    ->schema([
-                                        RichEditor::make('authenticated_description')
-                                            ->label('Authenticated Description'),
-                                    ]),
-                                Tabs\Tab::make('Internal Notes')
-                                    ->schema([
-                                        RichEditor::make('description')
-                                            ->label('Internal Notes'),
-                                    ]),
-                            ]),
-                        SelectTree::make('subjects')
-                            ->enableBranchNode()
-                            ->relationship('subjects', 'name', 'parent_id'),
-                        SpatieMediaLibraryFileUpload::make('thumbnail'),
-                        Select::make('formats')
-                            ->label('Formats')
-                            ->multiple()
-                            ->preload()
-                            ->relationship('formats', 'name'),
-                        SpatieTagsInput::make('tags')
-                            ->type('keywords'),
-                        Fieldset::make()
-                            ->columns(4)
-                            ->schema([
-                                Toggle::make('is_public')
-                                    ->label('Enabled'),
-                                Toggle::make('is_featured')
-                                    ->label('Featured'),
-                                DatePicker::make('new_until')
-                                    ->label('New Until')
-                                    ->inlineLabel(),
-                                DatePicker::make('trial_until')
-                                    ->label('Trial Until')
-                                    ->inlineLabel(),
-                            ]),
-                    ]),
+                ...Subscription::form(),
             ]);
     }
 
