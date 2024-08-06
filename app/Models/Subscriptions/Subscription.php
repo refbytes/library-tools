@@ -121,7 +121,13 @@ class Subscription extends Model implements HasMedia
                         ->required(),
                     Select::make('proxy_id')
                         ->label('Proxy')
-                        ->relationship('proxy', 'name'),
+                        ->relationship('proxy', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->createOptionForm(Proxy::form())
+                        ->createOptionUsing(function (array $data): int {
+                            return Proxy::create($data)->getKey();
+                        }),
                     TextInput::make('url')
                         ->label('URL')
                         ->required(),
@@ -153,7 +159,12 @@ class Subscription extends Model implements HasMedia
                     Select::make('formats')
                         ->label('Formats')
                         ->multiple()
+                        ->searchable()
                         ->preload()
+                        ->createOptionForm(Format::form())
+                        ->createOptionUsing(function (array $data): int {
+                            return Format::create($data)->getKey();
+                        })
                         ->relationship('formats', 'name'),
                     SpatieTagsInput::make('tags')
                         ->type('keywords'),
