@@ -16,4 +16,9 @@ class EditSubscription extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
 }
