@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Tapp\FilamentAuditing\RelationManagers\AuditsRelationManager;
 
 class SubscriptionResource extends Resource
 {
@@ -73,6 +74,7 @@ class SubscriptionResource extends Resource
     {
         return [
             AuthenticationsRelationManager::class,
+            AuditsRelationManager::class,
         ];
     }
 

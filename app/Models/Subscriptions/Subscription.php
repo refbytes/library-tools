@@ -20,18 +20,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use OwenIt\Auditing\Contracts\Auditable;
 use Parental\HasChildren;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 use Wildside\Userstamps\Userstamps;
 
-class Subscription extends Model implements HasMedia
+class Subscription extends Model implements Auditable, HasMedia
 {
     use HasChildren;
     use HasFactory;
     use HasTags;
     use InteractsWithMedia;
+    use \OwenIt\Auditing\Auditable;
     use Searchable;
     use SoftDeletes;
     use Userstamps;
