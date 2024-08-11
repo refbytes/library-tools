@@ -53,6 +53,11 @@ class Subscription extends Model implements HasMedia
         return $this->belongsTo(Vendor::class);
     }
 
+    public function providers(): BelongsToMany
+    {
+        return $this->belongsToMany(Provider::class);
+    }
+
     public function subjects(): BelongsToMany
     {
         return $this->belongsToMany(Subject::class);
@@ -66,6 +71,11 @@ class Subscription extends Model implements HasMedia
     public function authentications()
     {
         return $this->morphMany(Authentication::class, 'authenticatable');
+    }
+
+    public function lists()
+    {
+        return $this->belongsToMany(SubscriptionList::class, 'list_subscription');
     }
 
     protected function fullUrl(): Attribute
@@ -119,6 +129,16 @@ class Subscription extends Model implements HasMedia
                             return Vendor::create($data)->getKey();
                         })
                         ->required(),
+                    Select::make('provider_id')
+                        ->label('Provider(s)')
+                        ->relationship('providers', 'name')
+                        ->multiple()
+                        ->searchable()
+                        ->preload()
+                        ->createOptionForm(Provider::form())
+                        ->createOptionUsing(function (array $data): int {
+                            return Provider::create($data)->getKey();
+                        }),
                     Select::make('proxy_id')
                         ->label('Proxy')
                         ->relationship('proxy', 'name')

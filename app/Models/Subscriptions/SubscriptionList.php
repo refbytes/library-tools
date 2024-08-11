@@ -2,6 +2,7 @@
 
 namespace App\Models\Subscriptions;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,11 @@ class SubscriptionList extends Model
 
     protected $guarded = ['id'];
 
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Subscription::class, 'list_subscription');
+    }
+
     public static function form()
     {
         return [
@@ -24,6 +30,13 @@ class SubscriptionList extends Model
                     TextInput::make('name')
                         ->label('Name')
                         ->required(),
+                ]),
+            Section::make()
+                ->schema([
+                    CheckboxList::make('subscriptions')
+                        ->label('Subscriptions')
+                        ->relationship('subscriptions', 'name')
+                        ->columns(2),
                 ]),
         ];
     }

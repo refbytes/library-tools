@@ -16,6 +16,20 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
         });
+
+        Schema::create('list_subscription', function (Blueprint $table) {
+            $table->unsignedBigInteger('subscription_list_id');
+            $table->unsignedBigInteger('subscription_id');
+
+            $table->foreign('subscription_list_id')
+                ->references('id')
+                ->on('subscription_lists')
+                ->cascadeOnDelete();
+            $table->foreign('subscription_id')
+                ->references('id')
+                ->on('subscriptions')
+                ->cascadeOnDelete();
+        });
     }
 
     public function down(): void

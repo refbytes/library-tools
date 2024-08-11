@@ -51,6 +51,9 @@ class SubscriptionResource extends Resource
                 Tables\Filters\SelectFilter::make('vendor')
                     ->label('Vendor')
                     ->relationship('vendor', 'name'),
+                Tables\Filters\SelectFilter::make('provider')
+                    ->label('Provider')
+                    ->relationship('providers', 'name'),
                 Tables\Filters\SelectFilter::make('formats')
                     ->label('Format')
                     ->multiple()
