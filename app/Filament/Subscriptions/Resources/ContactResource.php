@@ -26,6 +26,15 @@ class ContactResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->striped()
+            ->filtersTriggerAction(function ($action) {
+                return $action->button()->label('Filters');
+            })
+            ->persistSearchInSession()
+            ->persistColumnSearchesInSession()
+            ->groups([
+                'vendor.name',
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
@@ -41,15 +50,17 @@ class ContactResource extends Resource
                     ->searchable()
                     ->toggleable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('Phone')
+                Tables\Columns\TextColumn::make('phone')
                     ->label('Phone')
                     ->searchable()
                     ->toggleable()
                     ->sortable(),
             ])
             ->filters([
-                //
-            ])
+                Tables\Filters\SelectFilter::make('vendor_id')
+                    ->label('Vendor')
+                    ->relationship('vendor', 'name'),
+            ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

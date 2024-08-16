@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subscriptions\Contact;
 use App\Models\Subscriptions\Database;
 use App\Models\Subscriptions\Proxy;
 use App\Models\Subscriptions\Vendor;
@@ -48,6 +49,8 @@ class DatabaseSeeder extends Seeder
                         $vendor = new \App\Models\Subscriptions\Vendor();
                         $vendor->name = $columns[1];
                         $vendor->save();
+                        $vendor->contacts()
+                            ->save(Contact::factory()->make());
                     }
                 }
             }

@@ -26,6 +26,12 @@ class SubjectResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->striped()
+            ->filtersTriggerAction(function ($action) {
+                return $action->button()->label('Filters');
+            })
+            ->persistSearchInSession()
+            ->persistColumnSearchesInSession()
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
