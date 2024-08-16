@@ -135,8 +135,14 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             'subscription_index' => [
-                'filterableAttributes' => ['vendor'],
-                'sortableAttributes' => ['name', 'created_at'],
+                'filterableAttributes' => ['vendor', 'formats', 'subjects'],
+                'sortableAttributes' => ['name', 'created_at', 'updated_at'],
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 5,
+                        'twoTypos' => 10,
+                    ],
+                ],
             ],
         ],
     ],

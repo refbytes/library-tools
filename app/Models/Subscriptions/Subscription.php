@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Parental\HasChildren;
@@ -84,9 +85,9 @@ class Subscription extends Model implements Auditable, HasMedia
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return match ($this?->proxy->enabled) {
-                    true => $this->proxy->prefix.$attributes['url'],
-                    false => $attributes['url'],
+                return match ($this?->proxy->is_enabled) {
+                    true, 1 => $this->proxy->prefix.$attributes['url'],
+                    false, 0 => $attributes['url'],
                     null => $attributes['url'],
                 };
             },
@@ -98,16 +99,34 @@ class Subscription extends Model implements Auditable, HasMedia
         return 'subscription_index';
     }
 
+    public function makeSearchableUsing(Collection $models): Collection
+    {
+        return $models->load([
+            'formats',
+            'proxy',
+            'subjects',
+            'tags',
+            'vendor',
+        ]);
+    }
+
     public function toSearchableArray(): array
     {
         return [
             'id' => (string) $this->id,
+            'type' => $this->type,
+            'is_public' => $this->is_public,
+            'is_featured' => $this->is_featured,
             'name' => $this->name,
+            'alternate_names' => $this->alternate_names,
             'vendor' => $this->vendor?->name,
             'description' => $this->description,
             'url' => $this->full_url,
             'keywords' => $this->tags->pluck('name')->toArray(),
+            'subjects' => $this->subjects()->pluck('name')->toArray(),
+            'formats' => $this->formats()->pluck('name')->toArray(),
             'created_at' => $this->created_at->timestamp,
+            'updated_at' => $this->updated_at->timestamp,
         ];
     }
 
@@ -193,7 +212,7 @@ class Subscription extends Model implements Auditable, HasMedia
                     Fieldset::make()
                         ->columns(4)
                         ->schema([
-                            Toggle::make('is_public')
+                            Toggle::make('is_publid')
                                 ->label('Enabled'),
                             Toggle::make('is_featured')
                                 ->label('Featured'),

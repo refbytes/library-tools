@@ -50,15 +50,25 @@ class SubscriptionResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('vendor')
-                    ->label('Vendor')
+                    ->label('Vendors')
+                    ->multiple()
+                    ->preload()
                     ->relationship('vendor', 'name'),
                 Tables\Filters\SelectFilter::make('provider')
-                    ->label('Provider')
+                    ->label('Providers')
+                    ->multiple()
+                    ->preload()
                     ->relationship('providers', 'name'),
                 Tables\Filters\SelectFilter::make('formats')
-                    ->label('Format')
+                    ->label('Formats')
                     ->multiple()
+                    ->preload()
                     ->relationship('formats', 'name'),
+                Tables\Filters\SelectFilter::make('subjects')
+                    ->label('Subjects')
+                    ->multiple()
+                    ->preload()
+                    ->relationship('subjects', 'name'),
             ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Tables\Actions\EditAction::make(),
