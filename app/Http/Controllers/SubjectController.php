@@ -15,7 +15,10 @@ class SubjectController extends Controller
     {
         $this->authorize('viewAny', Subject::class);
 
-        return SubjectResource::collection(Subject::all());
+        return SubjectResource::collection(
+            Subject::query()
+                ->get()
+        );
     }
 
     public function store(SubjectRequest $request)

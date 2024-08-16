@@ -6,16 +6,27 @@ use App\Http\Requests\SubscriptionRequest;
 use App\Http\Resources\SubscriptionResource;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Subscription::class);
 
-        return SubscriptionResource::collection(Subscription::all());
+        return SubscriptionResource::collection(
+            Subscription::query()
+                ->with([
+                    'formats',
+                    'providers',
+                    'proxy',
+                    'subjects',
+                    'vendor',
+                ])
+                ->get()
+        );
     }
 
     public function store(SubscriptionRequest $request)

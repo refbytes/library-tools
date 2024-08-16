@@ -13,6 +13,9 @@ class ContactResource extends JsonResource
         return [
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            /**
+             * @var int
+             */
             'id' => $this->id,
         ];
     }
