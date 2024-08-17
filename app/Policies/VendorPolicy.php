@@ -14,7 +14,10 @@ class VendorPolicy
 
     public function view(User $user, Vendor $vendor): bool {}
 
-    public function create(User $user): bool {}
+    public function create(User $user): bool
+    {
+        return $user->can('create') || $user->tokenCan('create');
+    }
 
     public function update(User $user, Vendor $vendor): bool {}
 

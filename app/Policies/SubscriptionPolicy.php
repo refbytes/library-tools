@@ -17,7 +17,10 @@ class SubscriptionPolicy
 
     public function view(User $user, Subscription $subscription): bool {}
 
-    public function create(User $user): bool {}
+    public function create(User $user): bool
+    {
+        return $user->can('create') || $user->tokenCan('create');
+    }
 
     public function update(User $user, Subscription $subscription): bool {}
 
