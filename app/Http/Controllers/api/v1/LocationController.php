@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationRequest;
 use App\Http\Resources\LocationResource;
 use App\Models\Subscriptions\Location;

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SubjectRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subscriptions\Subject;

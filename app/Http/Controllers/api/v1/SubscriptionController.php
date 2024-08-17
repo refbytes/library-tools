@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionRequest;
 use App\Http\Resources\SubscriptionResource;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubscriptionController extends Controller
 {
@@ -34,7 +36,18 @@ class SubscriptionController extends Controller
     {
         $this->authorize('create', Subscription::class);
 
-        return new SubscriptionResource(Subscription::create($request->validated()));
+        $validated = $request->validated();
+
+        $resource = DB::transaction(function () use ($validated) {
+
+            $resource = new SubscriptionResource(
+                Subscription::create($validated)
+            );
+
+            return $resource;
+        });
+
+        return $resource;
     }
 
     public function show(Subscription $subscription)

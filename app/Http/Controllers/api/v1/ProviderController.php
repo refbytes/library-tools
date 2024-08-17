@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProviderRequest;
 use App\Http\Resources\ProviderResource;
 use App\Models\Subscriptions\Provider;

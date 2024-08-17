@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProxyRequest;
 use App\Http\Resources\ProxyResource;
 use App\Models\Subscriptions\Proxy;

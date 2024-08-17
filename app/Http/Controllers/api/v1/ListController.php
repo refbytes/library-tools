@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ListRequest;
 use App\Http\Resources\ListResource;
 use App\Models\Subscriptions\SubscriptionList;

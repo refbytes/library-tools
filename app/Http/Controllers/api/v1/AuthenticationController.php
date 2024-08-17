@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthenticationRequest;
 use App\Http\Resources\AuthenticationResource;
 use App\Models\Subscriptions\Authentication;
