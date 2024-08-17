@@ -27,4 +27,5 @@ Route::middleware([
         Route::post('/subscriptions/{subscription}/authentications', [\App\Http\Controllers\api\v1\AuthenticationController::class, 'storeSubscriptionAuthentication'])
             ->name('subscriptions.authentications.store');
         Route::put('/vendors/{vendor}/authentications/{authentication}', [\App\Http\Controllers\api\v1\AuthenticationController::class, 'update']);
+        Route::apiResource('/users', \App\Http\Controllers\api\v1\UserController::class);
     });
