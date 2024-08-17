@@ -196,7 +196,9 @@ class Subscription extends Model implements Auditable, HasMedia
                         ->withCount()
                         ->searchable()
                         ->relationship('subjects', 'name', 'parent_id'),
-                    SpatieMediaLibraryFileUpload::make('thumbnail'),
+                    SpatieMediaLibraryFileUpload::make('thumbnail')
+                        ->label('Thumbnail')
+                        ->collection('thumbnail'),
                     Select::make('formats')
                         ->label('Formats')
                         ->multiple()

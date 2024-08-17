@@ -9,7 +9,8 @@ class ProxyRequest extends FormRequest
     public function rules(): array
     {
         return [
-
+            'name' => 'required|string|max:255',
+            'prefix' => 'required|string|max:255',
         ];
     }
 

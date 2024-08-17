@@ -11,9 +11,30 @@ class AuthenticationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            /**
+             * @var int
+             */
             'id' => $this->id,
+            /**
+             * @var string
+             */
+            'type' => $this->type,
+            /**
+             * @var string
+             */
+            'name' => $this->name,
+            /**
+             * @var string
+             */
+            'url' => $this->url,
+            /**
+             * @var string
+             */
+            'username' => $this->username,
+            /**
+             * @var string
+             */
+            'password' => $this->password,
         ];
     }
 }

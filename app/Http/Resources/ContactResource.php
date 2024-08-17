@@ -11,12 +11,37 @@ class ContactResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             /**
              * @var int
              */
             'id' => $this->id,
+
+            'vendor' => new VendorResource($this->whenLoaded('vendor')),
+
+            /**
+             * @var string
+             */
+            'name' => $this->name,
+
+            /**
+             * @var string
+             */
+            'email' => $this->email,
+
+            /**
+             * @var string
+             */
+            'phone' => $this->phone,
+
+            /**
+             * @var string
+             */
+            'notes' => $this->notes,
+
+            /**
+             * @var string
+             */
+            'url' => $this->url,
         ];
     }
 }

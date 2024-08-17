@@ -32,6 +32,11 @@ class SubjectController extends Controller
     {
         $this->authorize('view', $subject);
 
+        $subject
+            ->load([
+                'subscriptions',
+            ]);
+
         return new SubjectResource($subject);
     }
 

@@ -15,7 +15,13 @@ class ProxyResource extends JsonResource
              * @var int
              */
             'id' => $this->id,
+            /**
+             * @var string
+             */
             'name' => $this->name,
+            /**
+             * @var string
+             */
             'prefix' => $this->prefix,
         ];
     }

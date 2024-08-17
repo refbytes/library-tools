@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthenticationRequest;
 use App\Http\Resources\AuthenticationResource;
 use App\Models\Subscriptions\Authentication;
+use App\Models\Subscriptions\Subscription;
+use App\Models\Subscriptions\Vendor;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class AuthenticationController extends Controller
@@ -18,7 +20,14 @@ class AuthenticationController extends Controller
         return AuthenticationResource::collection(Authentication::all());
     }
 
-    public function store(AuthenticationRequest $request)
+    public function storeVendorAuthentication(AuthenticationRequest $request, Vendor $vendor)
+    {
+        $this->authorize('create', Authentication::class);
+
+        return new AuthenticationResource(Authentication::create($request->validated()));
+    }
+
+    public function storeSubscriptionAuthentication(AuthenticationRequest $request, Subscription $subscription)
     {
         $this->authorize('create', Authentication::class);
 
@@ -32,7 +41,7 @@ class AuthenticationController extends Controller
         return new AuthenticationResource($authentication);
     }
 
-    public function update(AuthenticationRequest $request, Authentication $authentication)
+    public function update(AuthenticationRequest $request, Vendor $vendor, Authentication $authentication)
     {
         $this->authorize('update', $authentication);
 

@@ -29,6 +29,11 @@ class FormatController extends Controller
     {
         $this->authorize('view', $format);
 
+        $format
+            ->load([
+                'subscriptions',
+            ]);
+
         return new FormatResource($format);
     }
 

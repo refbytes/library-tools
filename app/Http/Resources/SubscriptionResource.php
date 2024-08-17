@@ -53,6 +53,12 @@ class SubscriptionResource extends JsonResource
             'subjects' => SubjectResource::collection($this->whenLoaded('subjects')),
 
             'proxy' => new ProxyResource($this->whenLoaded('proxy')),
+
+            /**
+             * @var string
+             */
+            'thumbnail' => $this->getFirstMediaUrl('thumbnail'),
+
             /**
              * @var string
              */

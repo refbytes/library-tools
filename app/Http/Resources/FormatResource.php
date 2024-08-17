@@ -15,7 +15,12 @@ class FormatResource extends JsonResource
              * @var int
              */
             'id' => $this->id,
+            /**
+             * @var string
+             */
             'name' => $this->name,
+
+            'subscriptions' => SubscriptionResource::collection($this->whenLoaded('subscriptions')),
         ];
     }
 }

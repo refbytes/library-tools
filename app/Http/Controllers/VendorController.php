@@ -29,6 +29,11 @@ class VendorController extends Controller
     {
         $this->authorize('view', $vendor);
 
+        $vendor
+            ->load([
+                'subscriptions',
+            ]);
+
         return new VendorResource($vendor);
     }
 

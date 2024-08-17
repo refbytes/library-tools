@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ListRequest;
 use App\Http\Resources\ListResource;
-use App\Models\Subscriptions\List;
+use App\Models\Subscriptions\SubscriptionList;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ListController extends Controller
@@ -13,26 +13,32 @@ class ListController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', list::class);
+        $this->authorize('viewAny', SubscriptionList::class);
 
-        return ListResource::collection(list::all());
-        }
+        return ListResource::collection(
+            SubscriptionList::query()
+                ->with([
+                    'subscriptions',
+                ])
+                ->get()
+        );
+    }
 
     public function store(ListRequest $request)
     {
-        $this->authorize('create', list::class);
+        $this->authorize('create', SubscriptionList::class);
 
-        return new ListResource(list::create($request->validated()));
-        }
+        return new ListResource(SubscriptionList::create($request->validated()));
+    }
 
-    public function show(list $list)
+    public function show(SubscriptionList $list)
     {
         $this->authorize('view', $list);
 
         return new ListResource($list);
     }
 
-    public function update(ListRequest $request, list $list)
+    public function update(ListRequest $request, SubscriptionList $list)
     {
         $this->authorize('update', $list);
 
@@ -41,7 +47,7 @@ class ListController extends Controller
         return new ListResource($list);
     }
 
-    public function destroy(list $list)
+    public function destroy(SubscriptionList $list)
     {
         $this->authorize('delete', $list);
 

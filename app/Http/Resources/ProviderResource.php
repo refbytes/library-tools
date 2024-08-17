@@ -15,6 +15,9 @@ class ProviderResource extends JsonResource
              * @var int
              */
             'id' => $this->id,
+            /**
+             * @var string
+             */
             'name' => $this->name,
         ];
     }

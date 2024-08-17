@@ -24,6 +24,7 @@ class SubscriptionController extends Controller
                     'proxy',
                     'subjects',
                     'vendor',
+                    'media',
                 ])
                 ->get()
         );
