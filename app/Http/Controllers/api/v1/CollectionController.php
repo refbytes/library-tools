@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CollectionRequest;
-use App\Http\Resources\CollectionResource;
+use App\Http\Requests\Subscriptions\CollectionRequest;
+use App\Http\Resources\Subscriptions\CollectionResource;
 use App\Models\Subscriptions\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

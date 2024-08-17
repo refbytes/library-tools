@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProxyRequest;
-use App\Http\Resources\ProxyResource;
+use App\Http\Requests\Subscriptions\ProxyRequest;
+use App\Http\Resources\Subscriptions\ProxyResource;
 use App\Models\Subscriptions\Proxy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

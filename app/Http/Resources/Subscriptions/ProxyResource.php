@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Subscriptions;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Subscriptions\SubscriptionList */
-class ListResource extends JsonResource
+/** @mixin \App\Models\Subscriptions\Proxy */
+class ProxyResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
@@ -19,8 +19,10 @@ class ListResource extends JsonResource
              * @var string
              */
             'name' => $this->name,
-
-            'subscriptions' => SubscriptionResource::collection($this->whenLoaded('subscriptions')),
+            /**
+             * @var string
+             */
+            'prefix' => $this->prefix,
         ];
     }
 }

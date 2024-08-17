@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Subscriptions;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Subscriptions\Contact */
-class ContactResource extends JsonResource
+/** @mixin \App\Models\Subscriptions\Authentication */
+class AuthenticationResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
@@ -15,33 +15,26 @@ class ContactResource extends JsonResource
              * @var int
              */
             'id' => $this->id,
-
-            'vendor' => new VendorResource($this->whenLoaded('vendor')),
-
+            /**
+             * @var string
+             */
+            'type' => $this->type,
             /**
              * @var string
              */
             'name' => $this->name,
-
-            /**
-             * @var string
-             */
-            'email' => $this->email,
-
-            /**
-             * @var string
-             */
-            'phone' => $this->phone,
-
-            /**
-             * @var string
-             */
-            'notes' => $this->notes,
-
             /**
              * @var string
              */
             'url' => $this->url,
+            /**
+             * @var string
+             */
+            'username' => $this->username,
+            /**
+             * @var string
+             */
+            'password' => $this->password,
         ];
     }
 }

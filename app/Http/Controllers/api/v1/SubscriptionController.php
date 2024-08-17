@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SubscriptionRequest;
-use App\Http\Resources\SubscriptionResource;
+use App\Http\Requests\Subscriptions\SubscriptionRequest;
+use App\Http\Resources\Subscriptions\SubscriptionResource;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;

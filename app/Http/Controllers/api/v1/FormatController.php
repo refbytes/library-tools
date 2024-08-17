@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FormatRequest;
-use App\Http\Resources\FormatResource;
+use App\Http\Requests\Subscriptions\FormatRequest;
+use App\Http\Resources\Subscriptions\FormatResource;
 use App\Models\Subscriptions\Format;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

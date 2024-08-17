@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LocationRequest;
-use App\Http\Resources\LocationResource;
+use App\Http\Requests\Subscriptions\LocationRequest;
+use App\Http\Resources\Subscriptions\LocationResource;
 use App\Models\Subscriptions\Location;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

@@ -16,22 +16,22 @@ test('api token permissions can be updated', function () {
     $token = $user->tokens()->create([
         'name' => 'Test Token',
         'token' => Str::random(40),
-        'abilities' => ['create', 'read'],
+        'abilities' => ['subscriptions:create', 'subscriptions:read'],
     ]);
 
     Livewire::test(ApiTokenManager::class)
         ->set(['managingPermissionsFor' => $token])
         ->set(['updateApiTokenForm' => [
             'permissions' => [
-                'delete',
+                'subscriptions:delete',
                 'missing-permission',
             ],
         ]])
         ->call('updateApiToken');
 
     expect($user->fresh()->tokens->first())
-        ->can('delete')->toBeTrue()
-        ->can('read')->toBeFalse()
+        ->can('subscriptions:delete')->toBeTrue()
+        ->can('subscriptions:read')->toBeFalse()
         ->can('missing-permission')->toBeFalse();
 })->skip(function () {
     return ! Features::hasApiFeatures();

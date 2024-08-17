@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthenticationRequest;
-use App\Http\Resources\AuthenticationResource;
+use App\Http\Requests\Subscriptions\AuthenticationRequest;
+use App\Http\Resources\Subscriptions\AuthenticationResource;
 use App\Models\Subscriptions\Authentication;
 use App\Models\Subscriptions\Subscription;
 use App\Models\Subscriptions\Vendor;

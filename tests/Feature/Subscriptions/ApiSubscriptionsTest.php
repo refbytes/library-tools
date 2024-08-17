@@ -10,7 +10,7 @@ test('can make an api request to create a subscription', function () {
 
     Sanctum::actingAs(
         $user,
-        ['create', 'read'],
+        ['subscriptions:create'],
     );
     $subscription = \App\Models\Subscriptions\Subscription::factory()->make();
     $response = $this

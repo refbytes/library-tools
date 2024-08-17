@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Subscriptions;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VendorRequest extends FormRequest
+class FormatRequest extends FormRequest
 {
     public function rules(): array
     {

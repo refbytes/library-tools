@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactRequest;
-use App\Http\Resources\ContactResource;
+use App\Http\Requests\Subscriptions\ContactRequest;
+use App\Http\Resources\Subscriptions\ContactResource;
 use App\Models\Subscriptions\Contact;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

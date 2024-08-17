@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Subscriptions;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Subscriptions\Format */
-class FormatResource extends JsonResource
+/** @mixin \App\Models\Subscriptions\SubscriptionList */
+class ListResource extends JsonResource
 {
     public function toArray(Request $request): array
     {

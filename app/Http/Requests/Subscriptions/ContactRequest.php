@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Subscriptions;
 
 use App\Enums\ContactType;
 use Illuminate\Foundation\Http\FormRequest;
