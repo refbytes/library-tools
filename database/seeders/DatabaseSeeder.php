@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $admin = Role::create(['name' => 'admin']);
         $admin->givePermissionTo([
-            Permission::create(['name' => 'view.admin']),
+            Permission::create(['name' => 'subscriptions:admin']),
         ]);
         $adminUser = User::factory()->create([
             'name' => 'Test User',

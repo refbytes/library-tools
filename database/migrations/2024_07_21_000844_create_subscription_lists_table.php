@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('subscription_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();

@@ -15,3 +15,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+\Dedoc\Scramble\Scramble::registerUiRoute(path: 'docs/v1', api: 'v1');
+\Dedoc\Scramble\Scramble::registerJsonSpecificationRoute(path: 'docs/v1.json', api: 'v1');
