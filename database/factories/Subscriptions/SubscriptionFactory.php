@@ -3,8 +3,8 @@
 namespace Database\Factories\Subscriptions;
 
 use App\Models\Subscriptions\Subscription;
+use App\Models\Subscriptions\Vendor;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 class SubscriptionFactory extends Factory
 {
@@ -13,8 +13,10 @@ class SubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'type' => \App\Enums\SubscriptionType::DATABASE,
+            'vendor_id' => Vendor::factory()->create()->id,
+            'name' => $this->faker->company,
+            'url' => $this->faker->url,
         ];
     }
 }
