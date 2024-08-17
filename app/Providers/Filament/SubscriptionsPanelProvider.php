@@ -6,6 +6,7 @@ use App\Filament\Subscriptions\Widgets\NewVendor;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -26,8 +27,16 @@ class SubscriptionsPanelProvider extends PanelProvider
         return $panel
             ->id('subscriptions')
             ->path('admin/subscriptions')
+            ->spa()
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
+            ])
+            ->navigationItems([
+                NavigationItem::make('Admin')
+                    ->group('System')
+                    ->url(fn (): string => Pages\Dashboard::getUrl(panel: 'admin'))
+                    ->icon('heroicon-o-cog-6-tooth'),
             ])
             ->discoverResources(in: app_path('Filament/Subscriptions/Resources'), for: 'App\\Filament\\Subscriptions\\Resources')
             ->discoverPages(in: app_path('Filament/Subscriptions/Pages'), for: 'App\\Filament\\Subscriptions\\Pages')

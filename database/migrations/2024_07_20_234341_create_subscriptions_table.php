@@ -40,6 +40,11 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
         });
+
+        \Spatie\Permission\Models\Permission::create(['name' => 'subscriptions:view']);
+        \Spatie\Permission\Models\Permission::create(['name' => 'subscriptions:create']);
+        \Spatie\Permission\Models\Permission::create(['name' => 'subscriptions:update']);
+        \Spatie\Permission\Models\Permission::create(['name' => 'subscriptions:delete']);
     }
 
     public function down(): void

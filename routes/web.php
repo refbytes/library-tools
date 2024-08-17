@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('signed')
+    ->get('invitation/{invitation}/accept', \App\Livewire\AcceptInvitation::class)
+    ->name('invitation.accept');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
