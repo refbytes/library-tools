@@ -37,7 +37,8 @@ class Vendor extends Model
             TextInput::make('name')
                 ->label('Name')
                 ->unique(ignoreRecord: true)
-                ->required(),
+                ->required()
+                ->maxLength(255),
         ];
     }
 }

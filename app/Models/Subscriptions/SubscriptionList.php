@@ -8,11 +8,15 @@ use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Wildside\Userstamps\Userstamps;
 
 class SubscriptionList extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use HasSlug;
+    use SoftDeletes;
     use Userstamps;
 
     protected $guarded = ['id'];
@@ -22,6 +26,16 @@ class SubscriptionList extends Model
         return $this->belongsToMany(Subscription::class, 'list_subscription');
     }
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
     public static function form()
     {
         return [
@@ -29,7 +43,8 @@ class SubscriptionList extends Model
                 ->schema([
                     TextInput::make('name')
                         ->label('Name')
-                        ->required(),
+                        ->required()
+                        ->maxLength(255),
                 ]),
             Section::make()
                 ->schema([

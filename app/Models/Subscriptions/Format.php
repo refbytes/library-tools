@@ -30,7 +30,8 @@ class Format extends Model
                 ->schema([
                     TextInput::make('name')
                         ->label('Name')
-                        ->required(),
+                        ->required()
+                        ->maxLength(255),
                     IconPicker::make('icon')
                         ->label('Icon'),
                 ]),

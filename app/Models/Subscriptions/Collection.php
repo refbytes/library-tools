@@ -23,7 +23,8 @@ class Collection extends Model
                 ->schema([
                     TextInput::make('name')
                         ->label('Name')
-                        ->required(),
+                        ->required()
+                        ->maxLength(255),
                 ]),
         ];
     }

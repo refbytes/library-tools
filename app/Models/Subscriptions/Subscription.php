@@ -25,6 +25,8 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Parental\HasChildren;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 use Wildside\Userstamps\Userstamps;
 
@@ -32,6 +34,7 @@ class Subscription extends Model implements Auditable, HasMedia
 {
     use HasChildren;
     use HasFactory;
+    use HasSlug;
     use HasTags;
     use InteractsWithMedia;
     use \OwenIt\Auditing\Auditable;
@@ -94,6 +97,20 @@ class Subscription extends Model implements Auditable, HasMedia
         );
     }
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return empty($this->custom_slug)
+            ? SlugOptions::create()
+                ->generateSlugsFrom('name')
+                ->saveSlugsTo('slug')
+            : SlugOptions::create()
+                ->generateSlugsFrom('custom_slug')
+                ->saveSlugsTo('slug');
+    }
+
     public function searchableAs(): string
     {
         return 'subscription_index';
@@ -137,9 +154,16 @@ class Subscription extends Model implements Auditable, HasMedia
                 ->schema([
                     TextInput::make('name')
                         ->label('Name')
-                        ->required(),
+                        ->required()
+                        ->maxLength(255),
                     TextInput::make('alternate_names')
-                        ->label('Alternate Names'),
+                        ->label('Alternate Names')
+                        ->maxLength(255),
+                    TextInput::make('custom_slug')
+                        ->label('Custom URL Path')
+                        ->placeholder(fn ($record) => ! empty($record->slug) ? $record->slug : 'Leave blank to auto-generate')
+                        ->prefix(url('/resources').'/')
+                        ->maxLength(255),
                     Select::make('vendor_id')
                         ->label('Vendor')
                         ->relationship('vendor', 'name')
@@ -171,24 +195,28 @@ class Subscription extends Model implements Auditable, HasMedia
                         }),
                     TextInput::make('url')
                         ->label('URL')
-                        ->required(),
+                        ->required()
+                        ->maxLength(2048),
                     Tabs::make()
                         ->tabs([
                             Tabs\Tab::make('Description')
                                 ->schema([
                                     RichEditor::make('description')
                                         ->label('Description')
-                                        ->required(),
+                                        ->required()
+                                        ->maxLength(65535),
                                 ]),
                             Tabs\Tab::make('Authenticated Description')
                                 ->schema([
                                     RichEditor::make('authenticated_description')
-                                        ->label('Authenticated Description'),
+                                        ->label('Authenticated Description')
+                                        ->maxLength(65535),
                                 ]),
                             Tabs\Tab::make('Internal Notes')
                                 ->schema([
                                     RichEditor::make('description')
-                                        ->label('Internal Notes'),
+                                        ->label('Internal Notes')
+                                        ->maxLength(65535),
                                 ]),
                         ]),
                     SelectTree::make('subjects')
@@ -198,7 +226,9 @@ class Subscription extends Model implements Auditable, HasMedia
                         ->relationship('subjects', 'name', 'parent_id'),
                     SpatieMediaLibraryFileUpload::make('thumbnail')
                         ->label('Thumbnail')
-                        ->collection('thumbnail'),
+                        ->collection('thumbnail')
+                        ->image()
+                        ->maxSize(2048),
                     Select::make('formats')
                         ->label('Formats')
                         ->multiple()
@@ -214,7 +244,7 @@ class Subscription extends Model implements Auditable, HasMedia
                     Fieldset::make()
                         ->columns(4)
                         ->schema([
-                            Toggle::make('is_publid')
+                            Toggle::make('is_public')
                                 ->label('Enabled'),
                             Toggle::make('is_featured')
                                 ->label('Featured'),

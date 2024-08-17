@@ -18,6 +18,7 @@ class SubscriptionRequest extends FormRequest
                 Rule::enum(SubscriptionType::class),
             ],
             'name' => 'required|string|max:255',
+            'custom_slug' => 'sometimes|string|max:255',
             'alternate_names' => 'sometimes|string|max:255',
             'url' => 'required|url|max:255',
             'description' => 'sometimes|string|max:65535',

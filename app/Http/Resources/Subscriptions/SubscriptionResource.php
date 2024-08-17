@@ -34,6 +34,10 @@ class SubscriptionResource extends JsonResource
             /**
              * @var string
              */
+            'slug' => $this->slug,
+            /**
+             * @var string
+             */
             'alternate_names' => $this->alternate_names,
             /**
              * @var string

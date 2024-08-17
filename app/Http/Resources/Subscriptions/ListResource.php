@@ -19,6 +19,10 @@ class ListResource extends JsonResource
              * @var string
              */
             'name' => $this->name,
+            /**
+             * @var string
+             */
+            'slug' => $this->slug,
 
             'subscriptions' => SubscriptionResource::collection($this->whenLoaded('subscriptions')),
         ];

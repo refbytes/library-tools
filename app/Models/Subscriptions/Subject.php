@@ -42,7 +42,8 @@ class Subject extends Model
                 ->schema([
                     TextInput::make('name')
                         ->label('Name')
-                        ->required(),
+                        ->required()
+                        ->maxLength(255),
                     Select::make('parent_id')
                         ->label('Parent')
                         ->relationship('parent', 'name', ignoreRecord: true),

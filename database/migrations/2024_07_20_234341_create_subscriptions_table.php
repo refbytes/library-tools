@@ -17,7 +17,13 @@ return new class extends Migration
                 ->default(true);
             $table->boolean('is_featured')
                 ->default(false);
-            $table->string('name');
+            $table->string('name')
+                ->unique();
+            $table->string('slug')
+                ->unique();
+            $table->string('custom_slug')
+                ->nullable()
+                ->unique();
             $table->string('alternate_names')
                 ->nullable();
             $table->string('url')

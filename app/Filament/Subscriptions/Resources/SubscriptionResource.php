@@ -2,13 +2,18 @@
 
 namespace App\Filament\Subscriptions\Resources;
 
+use App\Enums\SubscriptionType;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Subscription;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\QueryBuilder;
+use Filament\Tables\Filters\QueryBuilder\Constraints\BooleanConstraint;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Tapp\FilamentAuditing\RelationManagers\AuditsRelationManager;
 
 class SubscriptionResource extends Resource
@@ -47,8 +52,18 @@ class SubscriptionResource extends Resource
                     ->searchable()
                     ->toggleable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Last Updated')
+                    ->date()
+                    ->toggleable()
+                    ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('type')
+                    ->label('Types')
+                    ->multiple()
+                    ->preload()
+                    ->options(SubscriptionType::class),
                 Tables\Filters\SelectFilter::make('vendor')
                     ->label('Vendors')
                     ->multiple()
@@ -69,6 +84,37 @@ class SubscriptionResource extends Resource
                     ->multiple()
                     ->preload()
                     ->relationship('subjects', 'name'),
+                TernaryFilter::make('public')
+                    ->label('Public')
+                    ->attribute('is_public')
+                    ->nullable()
+                    ->queries(
+                        true: fn (Builder $query) => $query->where('is_public', true),
+                        false: fn (Builder $query) => $query->where('is_public', false),
+                        blank: fn (Builder $query) => $query,
+                    ),
+                TernaryFilter::make('featured')
+                    ->label('Featured')
+                    ->attribute('is_featured')
+                    ->nullable()
+                    ->queries(
+                        true: fn (Builder $query) => $query->where('is_featured', true),
+                        false: fn (Builder $query) => $query->where('is_featured', false),
+                        blank: fn (Builder $query) => $query,
+                    ),
+                QueryBuilder::make()
+                    ->constraints([
+                        QueryBuilder\Constraints\TextConstraint::make('name'),
+                        QueryBuilder\Constraints\TextConstraint::make('alternate_names'),
+                        QueryBuilder\Constraints\TextConstraint::make('description'),
+                        QueryBuilder\Constraints\TextConstraint::make('authenticated_description'),
+                        QueryBuilder\Constraints\TextConstraint::make('internal_notes'),
+                        QueryBuilder\Constraints\TextConstraint::make('url'),
+                        BooleanConstraint::make('is_public')
+                            ->label('Public'),
+                        BooleanConstraint::make('is_featured')
+                            ->label('Featured'),
+                    ]),
             ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Tables\Actions\EditAction::make(),

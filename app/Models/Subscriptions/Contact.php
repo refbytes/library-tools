@@ -38,13 +38,18 @@ class Contact extends Model
                         ->options(ContactType::class)
                         ->required(),
                     TextInput::make('name')
-                        ->label('Name'),
+                        ->label('Name')
+                        ->maxLength(255),
                     TextInput::make('email')
-                        ->label('Email'),
+                        ->label('Email')
+                        ->email()
+                        ->maxLength(255),
                     TextInput::make('phone')
-                        ->label('Phone'),
+                        ->label('Phone')
+                        ->maxLength(255),
                     TextInput::make('url')
-                        ->label('Url'),
+                        ->label('Url')
+                        ->maxLength(255),
                 ]),
         ];
     }
