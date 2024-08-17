@@ -85,8 +85,8 @@ class Subscription extends Model implements Auditable, HasMedia
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return match ($this?->proxy->is_enabled) {
-                    true, 1 => $this->proxy->prefix.$attributes['url'],
+                return match ($this->proxy?->is_enabled) {
+                    true, 1 => $this->proxy?->prefix.$attributes['url'],
                     false, 0 => $attributes['url'],
                     null => $attributes['url'],
                 };

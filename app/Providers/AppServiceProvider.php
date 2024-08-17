@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             'info' => ['version' => '1.0.0'],
         ])
             ->routes(function (Route $route) {
-                return Str::startsWith($route->uri, 'api/');
+                return Str::startsWith($route->uri, 'api/v1/');
             })
             ->afterOpenApiGenerated(function (OpenApi $openApi) {
                 $openApi->secure(
