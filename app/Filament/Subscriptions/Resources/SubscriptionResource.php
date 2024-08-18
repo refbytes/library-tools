@@ -44,6 +44,11 @@ class SubscriptionResource extends Resource
             ->groups([
                 'vendor.name',
             ])
+            ->modifyQueryUsing(function (Builder $query) {
+                $query->with([
+                    'proxy',
+                ]);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
@@ -120,6 +125,10 @@ class SubscriptionResource extends Resource
             ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('go')
+                    ->label('Go')
+                    ->url(fn ($record) => $record->full_url, shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-arrow-top-right-on-square'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
