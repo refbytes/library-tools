@@ -32,6 +32,10 @@ class SubscriptionsPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->navigationGroups([
+                'Settings',
+                'System',
+            ])
             ->navigationItems([
                 NavigationItem::make('Admin')
                     ->group('System')

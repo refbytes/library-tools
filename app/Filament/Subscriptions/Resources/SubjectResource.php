@@ -11,6 +11,8 @@ use Filament\Tables\Table;
 
 class SubjectResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Settings';
+
     protected static ?string $model = Subject::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';

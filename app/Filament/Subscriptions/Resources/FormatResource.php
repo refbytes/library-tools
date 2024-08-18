@@ -12,6 +12,8 @@ use Guava\FilamentIconPicker\Tables\IconColumn;
 
 class FormatResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Settings';
+
     protected static ?string $model = Format::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';

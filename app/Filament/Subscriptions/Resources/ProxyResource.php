@@ -12,6 +12,8 @@ use Illuminate\Support\Number;
 
 class ProxyResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Settings';
+
     protected static ?string $model = Proxy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-server-stack';

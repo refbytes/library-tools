@@ -11,6 +11,8 @@ use Filament\Tables\Table;
 
 class SubscriptionListResource extends Resource
 {
+    protected static ?string $navigationParentItem = 'Subscriptions';
+
     protected static ?string $model = SubscriptionList::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
