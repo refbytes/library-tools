@@ -35,6 +35,7 @@
         "spatie/laravel-sluggable": "^3.6",
         "tapp/filament-auditing": "^3.0",
         "tightenco/parental": "^1.4",
+        "wiebenieuwenhuis/filament-code-editor": "^1.1",
         "wildside/userstamps": "^2.4"
     },
     "require-dev": {
