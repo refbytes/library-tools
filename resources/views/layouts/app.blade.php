@@ -41,5 +41,7 @@
         @stack('modals')
 
         @livewireScripts
+
+        {!! $site->js ?? '' !!}
     </body>
 </html>

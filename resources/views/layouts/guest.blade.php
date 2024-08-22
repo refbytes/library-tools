@@ -23,5 +23,7 @@
         </div>
 
         @livewireScripts
+
+        {!! $site->js ?? '' !!}
     </body>
 </html>
