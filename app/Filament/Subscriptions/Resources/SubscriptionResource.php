@@ -3,6 +3,7 @@
 namespace App\Filament\Subscriptions\Resources;
 
 use App\Enums\SubscriptionType;
+use App\Filament\Exports\Subscriptions\SubscriptionExporter;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Subscription;
@@ -138,6 +139,8 @@ class SubscriptionResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\ExportBulkAction::make('Export')
+                        ->exporter(SubscriptionExporter::class),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);

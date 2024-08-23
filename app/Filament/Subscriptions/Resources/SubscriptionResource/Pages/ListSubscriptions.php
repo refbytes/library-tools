@@ -2,6 +2,8 @@
 
 namespace App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 
+use App\Filament\Exports\Subscriptions\SubscriptionExporter;
+use App\Filament\Imports\Subscriptions\SubscriptionImporter;
 use App\Filament\Subscriptions\Resources\SubscriptionResource;
 use App\Models\Subscriptions\Subscription;
 use Filament\Actions;
@@ -16,6 +18,12 @@ class ListSubscriptions extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Actions\ActionGroup::make([
+                Actions\ImportAction::make()
+                    ->importer(SubscriptionImporter::class),
+                Actions\ExportAction::make('Export')
+                    ->exporter(SubscriptionExporter::class),
+            ]),
         ];
     }
 
