@@ -22,3 +22,6 @@ Route::middleware([
 
 \Dedoc\Scramble\Scramble::registerUiRoute(path: 'docs/v1', api: 'v1');
 \Dedoc\Scramble\Scramble::registerJsonSpecificationRoute(path: 'docs/v1.json', api: 'v1');
+
+Route::get(config('system.subscriptions.path'), \App\Livewire\Subscriptions::class)
+    ->name('subscriptions');
