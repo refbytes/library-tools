@@ -66,6 +66,9 @@ class SubscriptionsPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->maxContentWidth(MaxWidth::Full)
-            ->sidebarCollapsibleOnDesktop();
+            ->sidebarCollapsibleOnDesktop()
+            ->plugins([
+                \DiscoveryDesign\FilamentGaze\FilamentGazePlugin::make(),
+            ]);
     }
 }

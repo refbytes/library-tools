@@ -6,6 +6,7 @@ use App\Enums\SubscriptionType;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\Pages;
 use App\Filament\Subscriptions\Resources\SubscriptionResource\RelationManagers\AuthenticationsRelationManager;
 use App\Models\Subscriptions\Subscription;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -28,6 +29,11 @@ class SubscriptionResource extends Resource
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                    ->pollTimer(10)
+                    ->lock()
+                    ->hideOnCreate()
+                    ->canTakeControl(fn () => auth()->user()->hasRole('admin')),
                 ...Subscription::form(),
             ]);
     }
