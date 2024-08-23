@@ -19,7 +19,13 @@
     </head>
     <body class="font-sans antialiased">
         <x-banner />
-
+        <header>
+            @if(! empty($site->header))
+                {!! $site->header !!}
+            @else
+                <x-header />
+            @endif
+        </header>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
 
@@ -37,11 +43,15 @@
                 {{ $slot }}
             </main>
         </div>
-
+        <footer>
+            @if(! empty($site->footer))
+                {!! $site->footer !!}
+            @else
+                <x-footer />
+            @endif
+        </footer>
         @stack('modals')
-
         @livewireScripts
-
         {!! $site->js ?? '' !!}
     </body>
 </html>

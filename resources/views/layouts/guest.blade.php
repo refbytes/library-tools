@@ -18,12 +18,24 @@
         @livewireStyles
     </head>
     <body>
+        <header>
+            @if(! empty($site->header))
+                {!! $site->header !!}
+            @else
+                <x-header />
+            @endif
+        </header>
         <div class="font-sans antialiased text-gray-900 dark:text-gray-100">
             {{ $slot }}
         </div>
-
+        <footer>
+            @if(! empty($site->footer))
+                {!! $site->footer !!}
+            @else
+                <x-footer />
+            @endif
+        </footer>
         @livewireScripts
-
         {!! $site->js ?? '' !!}
     </body>
 </html>
