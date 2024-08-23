@@ -13,14 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {!! $site->css ?? '' !!}
+        {!! $theme->css ?? '' !!}
         <!-- Styles -->
         @livewireStyles
     </head>
     <body>
         <header>
-            @if(! empty($site->header))
-                {!! $site->header !!}
+            @if(! empty($theme->header))
+                {!! $theme->header !!}
             @else
                 <x-header />
             @endif
@@ -29,13 +29,13 @@
             {{ $slot }}
         </div>
         <footer>
-            @if(! empty($site->footer))
-                {!! $site->footer !!}
+            @if(! empty($theme->footer))
+                {!! $theme->footer !!}
             @else
                 <x-footer />
             @endif
         </footer>
         @livewireScripts
-        {!! $site->js ?? '' !!}
+        {!! $theme->js ?? '' !!}
     </body>
 </html>

@@ -7,6 +7,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
+use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 
 class Site extends SettingsPage
 {
@@ -26,6 +27,8 @@ class Site extends SettingsPage
                             ->label('Name')
                             ->required()
                             ->maxLength(255),
+                        CodeEditor::make('meta')
+                            ->label('Meta'),
                     ]),
             ]);
     }

@@ -6,8 +6,6 @@ use Spatie\LaravelSettings\Settings;
 
 class ThemeSettings extends Settings
 {
-    public ?string $meta;
-
     public ?string $css;
 
     public ?string $header;

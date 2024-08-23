@@ -22,8 +22,6 @@ class Theme extends SettingsPage
             ->schema([
                 Section::make()
                     ->schema([
-                        CodeEditor::make('meta')
-                            ->label('Meta'),
                         CodeEditor::make('css')
                             ->label('CSS'),
                         CodeEditor::make('header')

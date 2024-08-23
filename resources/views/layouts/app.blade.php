@@ -13,21 +13,20 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {!! $site->css ?? '' !!}
+        {!! $theme->css ?? '' !!}
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <x-banner />
         <header>
-            @if(! empty($site->header))
-                {!! $site->header !!}
+            @if(! empty($theme->header))
+                {!! $theme->header !!}
             @else
                 <x-header />
             @endif
         </header>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -44,14 +43,14 @@
             </main>
         </div>
         <footer>
-            @if(! empty($site->footer))
-                {!! $site->footer !!}
+            @if(! empty($theme->footer))
+                {!! $theme->footer !!}
             @else
                 <x-footer />
             @endif
         </footer>
         @stack('modals')
         @livewireScripts
-        {!! $site->js ?? '' !!}
+        {!! $theme->js ?? '' !!}
     </body>
 </html>
