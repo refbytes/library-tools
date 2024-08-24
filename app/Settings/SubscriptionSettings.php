@@ -8,6 +8,8 @@ class SubscriptionSettings extends Settings
 {
     public ?string $theme;
 
+    public ?string $corners;
+
     public ?string $resource_layout;
 
     public static function group(): string

@@ -8,7 +8,7 @@
                             <img src="{{ $thumbnail }}" alt="{{ $subscription->name }}" class="object-cover" />
                         </div>
                     @endif
-                    <div>
+                    <div class="flex-1">
                         <div class="py-5 px-4 sm:px-6">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">
                                 <a href="{{ $subscription->full_url }}">

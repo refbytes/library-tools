@@ -22,12 +22,18 @@ class Settings extends SettingsPage
             ->schema([
                 Section::make()
                     ->schema([
+                        Select::make('corners')
+                            ->label('Corners')
+                            ->options([
+                                'rounded' => 'Rounded',
+                                'square' => 'Square',
+                            ])
+                            ->required(),
                         Select::make('theme')
                             ->label('Theme')
                             ->options([
                                 'default' => 'Default',
-                                'rounded' => 'Rounded',
-                                'square' => 'Square',
+                                'custom' => 'Custom',
                             ])
                             ->required(),
                         Select::make('resource_layout')
