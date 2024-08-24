@@ -13,6 +13,11 @@ class Subscriptions extends Component
 
     public ?string $q = '';
 
+    public ?array $filters = [
+        'vendor' => [],
+        'formats' => [],
+    ];
+
     public ?array $facetDistribution = [];
 
     public ?int $totalhits = 0;
@@ -31,7 +36,7 @@ class Subscriptions extends Component
                 'vendor',
                 'formats',
             ];
-            $options['filter'] = $this->buildFilterQuery([]);
+            $options['filter'] = $this->buildFilterQuery();
 
             // https://github.com/meilisearch/meilisearch-php/blob/main/src/Search/SearchResult.php
             $response = $meilisearch->search($q, $options);
@@ -47,9 +52,20 @@ class Subscriptions extends Component
             ->get();
     }
 
-    private function buildFilterQuery($filters)
+    private function buildFilterQuery()
     {
         $options = '';
+
+        foreach ($this->filters as $key => $values) {
+            if (empty($values)) {
+                continue;
+            }
+            //dd($this->filters);
+            //dd($values);
+            $options .= $key.' = "'.$values[0].'"';
+
+            //dd($options);
+        }
 
         return $options;
     }

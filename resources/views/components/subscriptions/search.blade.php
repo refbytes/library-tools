@@ -5,6 +5,6 @@
                wire:model="q"
                name="q"
                placeholder="{{ str(__('subscriptions.search'))->title() }}..."
-               class="w-full p-2 border border-gray-300 rounded-lg">
+               class="p-2 w-full rounded-lg border border-gray-300">
     </form>
 </div>
