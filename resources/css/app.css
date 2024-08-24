@@ -5,3 +5,35 @@
 [x-cloak] {
     display: none;
 }
+
+.subscriptions {
+    & .square {
+
+        .list {
+
+        }
+
+        .facet {
+
+        }
+
+        .resource {
+
+        }
+    }
+
+    & .square {
+
+        .list {
+
+        }
+
+        .facet {
+
+        }
+
+        .resource {
+
+        }
+    }
+}

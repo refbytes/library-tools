@@ -1,4 +1,4 @@
-<li>
+<li class="resource">
     <div>
         <div>
             <div class="mb-4 bg-white shadow sm:rounded-lg">

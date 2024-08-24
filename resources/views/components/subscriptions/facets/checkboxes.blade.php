@@ -1,4 +1,4 @@
-<div>
+<div class="facet">
     @if($values = data_get($facets, $facet, []))
 
         <div x-data="{ active: 1 }" class="mx-auto space-y-4 w-full max-w-3xl min-h-[16rem]">
@@ -37,7 +37,7 @@
                                         <div class="flex-1 min-w-0 text-sm leading-6">
                                             <label for="person-1"
                                                    class="font-medium text-gray-900 select-none">
-                                                {{ $name }}
+                                                {{ $name }} ({{ $count }})
                                             </label>
                                         </div>
                                         <div class="flex items-center ml-3 h-6">
