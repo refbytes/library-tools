@@ -54,19 +54,9 @@ class Subscriptions extends Component
 
     private function buildFilterQuery()
     {
-        $options = '';
-
-        foreach ($this->filters as $key => $values) {
-            if (empty($values)) {
-                continue;
-            }
-            //dd($this->filters);
-            //dd($values);
-            $options .= $key.' = "'.$values[0].'"';
-
-            //dd($options);
-        }
-
-        return $options;
+        return collect($this->filters)
+            ->filter(fn ($facet) => ! empty($facet))
+            ->map(fn ($values, $key) => '('.collect($values)->map(fn ($value) => $key.' = "'.trim($value).'"')->implode(' OR ').')')
+            ->implode(' AND ');
     }
 }
