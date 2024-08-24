@@ -5,14 +5,17 @@ namespace App\Livewire;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Subscriptions extends Component
 {
     public ?Collection $subscriptions;
 
+    #[Url]
     public ?string $q = '';
 
+    #[Url]
     public ?array $filters = [
         'vendor' => [],
         'formats' => [],
