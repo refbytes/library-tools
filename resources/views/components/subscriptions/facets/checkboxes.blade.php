@@ -31,9 +31,9 @@
                             <legend class="sr-only">
                                 {{ str(__('subscriptions.'.$facet))->plural()->title() }}
                             </legend>
-                            <div class="overflow-auto mt-4 max-h-72 border-t border-b border-gray-200 divide-y divide-gray-200">
+                            <div class="overflow-auto mt-2 max-h-72">
                                 @foreach($values as $name => $count)
-                                    <div class="flex relative items-start py-4 px-3">
+                                    <div class="flex relative items-start py-2 px-3">
                                         <div class="flex-1 min-w-0 text-sm leading-6">
                                             <label for="person-1"
                                                    class="font-medium text-gray-900 select-none">

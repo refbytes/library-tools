@@ -16,6 +16,8 @@ class Subscriptions extends Component
     public ?array $filters = [
         'vendor' => [],
         'formats' => [],
+        'subjects' => [],
+        'alpha' => null,
     ];
 
     public ?array $facetDistribution = [];
@@ -35,6 +37,8 @@ class Subscriptions extends Component
             $options['facets'] = [
                 'vendor',
                 'formats',
+                'subjects',
+                'alpha',
             ];
             $options['filter'] = $this->buildFilterQuery();
 
@@ -48,6 +52,9 @@ class Subscriptions extends Component
             ->query(fn (Builder $query) => $query->with([
                 'vendor',
                 'formats',
+                'subjects',
+                'proxy',
+                'media',
             ]))
             ->get();
     }
@@ -56,6 +63,7 @@ class Subscriptions extends Component
     {
         return collect($this->filters)
             ->filter(fn ($facet) => ! empty($facet))
+            ->map(fn ($values) => ! is_array($values) ? [$values] : $values)
             ->map(fn ($values, $key) => '('.collect($values)->map(fn ($value) => $key.' = "'.trim($value).'"')->implode(' OR ').')')
             ->implode(' AND ');
     }

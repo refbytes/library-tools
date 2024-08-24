@@ -135,6 +135,7 @@ class Subscription extends Model implements Auditable, HasMedia
             'is_public' => $this->is_public,
             'is_featured' => $this->is_featured,
             'name' => $this->name,
+            'alpha' => str($this->name)->take(1),
             'alternate_names' => $this->alternate_names,
             'vendor' => $this->vendor?->name,
             'description' => $this->description,
