@@ -6,7 +6,9 @@ use App\Settings\SubscriptionSettings;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Pages\SettingsPage;
+use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 
 class Settings extends SettingsPage
 {
@@ -38,10 +40,15 @@ class Settings extends SettingsPage
                             ->required(),
                         Select::make('resource_layout')
                             ->label('Resource Layout')
+                            ->live()
                             ->options([
                                 'default' => 'Default',
+                                'custom' => 'Custom',
                             ])
                             ->required(),
+                        CodeEditor::make('custom_resource_layout')
+                            ->label('Custom Resource Layout')
+                            ->visible(fn (Get $get) => $get('resource_layout') === 'custom'),
                         Select::make('filter_order')
                             ->label('Filter Position')
                             ->options([
