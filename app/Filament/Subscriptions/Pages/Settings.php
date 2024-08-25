@@ -42,6 +42,13 @@ class Settings extends SettingsPage
                                 'default' => 'Default',
                             ])
                             ->required(),
+                        Select::make('filter_order')
+                            ->label('Filter Position')
+                            ->options([
+                                1 => 'Left',
+                                2 => 'Right',
+                            ])
+                            ->required(),
                     ]),
             ]);
     }

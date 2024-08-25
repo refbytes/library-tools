@@ -36,7 +36,7 @@
                 <x-footer />
             @endif
         </footer>
-        @livewireScripts
+        @livewireScriptConfig
         {!! $theme->js ?? '' !!}
     </body>
 </html>

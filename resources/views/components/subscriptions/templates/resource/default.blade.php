@@ -88,7 +88,10 @@
                                     style="display: none;"
                                     class="absolute right-2 mt-2 w-40 bg-white shadow-md corner-style-md-md"
                                 >
-                                    <a href="#" class="flex gap-2 items-center py-2.5 px-4 w-full text-sm text-left hover:bg-gray-50 disabled:text-gray-500 first-of-type:corner-style-t-md last-of-type:corner-style-b-md">
+                                    <a x-clipboard
+                                        href="{{ $subscription->full_url }}"
+                                        data-target="{{ $subscription->full_url }}"
+                                       class="flex gap-2 items-center py-2.5 px-4 w-full text-sm text-left hover:bg-gray-50 disabled:text-gray-500 first-of-type:corner-style-t-md last-of-type:corner-style-b-md">
                                         Copy URL
                                     </a>
                                 </div>

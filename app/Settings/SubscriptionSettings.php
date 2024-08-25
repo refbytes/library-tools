@@ -12,6 +12,8 @@ class SubscriptionSettings extends Settings
 
     public ?string $resource_layout;
 
+    public ?int $filter_order;
+
     public static function group(): string
     {
         return 'subscriptions';

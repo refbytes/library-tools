@@ -9,5 +9,6 @@
         --pageBackgroundColor: {{ $theme->page_background_color }};
         --boxBackgroundColor: {{ $theme->box_background_color }};
         --borderColor: {{ $theme->border_color }};
+        @stack('theme')
     }
 </style>

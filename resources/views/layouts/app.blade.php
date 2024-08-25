@@ -51,7 +51,7 @@
             @endif
         </footer>
         @stack('modals')
-        @livewireScripts
+        @livewireScriptConfig
         {!! $theme->js ?? '' !!}
     </body>
 </html>
