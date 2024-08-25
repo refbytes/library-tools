@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\ViewComposers\LayoutViewComposer;
+use App\Http\ViewComposers\SubscriptionsViewComposer;
 use App\Models\User;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
@@ -32,6 +33,14 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             'layouts.*',
             LayoutViewComposer::class
+        );
+        View::composer(
+            [
+                'layouts.*',
+                'livewire.subscriptions',
+                'components.subscriptions.*',
+            ],
+            SubscriptionsViewComposer::class
         );
 
         Gate::before(function (User $user, $ability) {

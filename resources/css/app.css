@@ -6,34 +6,20 @@
     display: none;
 }
 
-.subscriptions {
-    & .square {
-
-        .list {
-
-        }
-
-        .facet {
-
-        }
-
-        .resource {
-
-        }
+.subscriptions.corner-style-rounded {
+    .corner-style {
+        @apply rounded;
     }
-
-    & .square {
-
-        .list {
-
-        }
-
-        .facet {
-
-        }
-
-        .resource {
-
-        }
+    .corner-style-md {
+        @apply rounded-md;
+    }
+    .corner-style-lg {
+        @apply rounded-lg;
+    }
+    .corner-style-t-md {
+        @apply rounded-t-md;
+    }
+    .corner-style-b-md {
+        @apply rounded-b-md;
     }
 }

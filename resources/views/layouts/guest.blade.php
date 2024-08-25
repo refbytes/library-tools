@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @include('layouts.theme')
         {!! $theme->css ?? '' !!}
         <!-- Styles -->
         @livewireStyles

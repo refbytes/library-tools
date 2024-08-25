@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @include('layouts.theme')
         {!! $theme->css ?? '' !!}
         <!-- Styles -->
         @livewireStyles
@@ -26,7 +27,7 @@
                 <x-header />
             @endif
         </header>
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-[var(--pageBackgroundColor)] dark:bg-gray-900">
 
             <!-- Page Heading -->
             @if (isset($header))

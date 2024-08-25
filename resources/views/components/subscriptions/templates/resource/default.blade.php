@@ -1,7 +1,7 @@
 <li class="resource">
     <div>
         <div>
-            <div class="mb-4 bg-white shadow sm:rounded-lg">
+            <div class="mb-4 bg-[var(--boxBackgroundColor)] shadow corner-style-lg">
                 <div class="flex">
                     @if($thumbnail = $subscription->getfirstMediaUrl('thumbnail'))
                         <div class="w-48 h-48 flex-0">
@@ -11,7 +11,8 @@
                     <div class="flex-1">
                         <div class="py-5 px-4 sm:px-6">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">
-                                <a href="{{ $subscription->full_url }}">
+                                <a href="{{ $subscription->full_url }}"
+                                    class="text-[var(--primaryLinkColor)]">
                                     {{ $subscription->name }}
                                 </a>
                                @if($subscription->vendor_id)
@@ -85,9 +86,9 @@
                                     x-on:click.outside="close($refs.button)"
                                     :id="$id('dropdown-button')"
                                     style="display: none;"
-                                    class="absolute right-2 mt-2 w-40 bg-white rounded-md shadow-md"
+                                    class="absolute right-2 mt-2 w-40 bg-white shadow-md corner-style-md-md"
                                 >
-                                    <a href="#" class="flex gap-2 items-center py-2.5 px-4 w-full text-sm text-left hover:bg-gray-50 disabled:text-gray-500 first-of-type:rounded-t-md last-of-type:rounded-b-md">
+                                    <a href="#" class="flex gap-2 items-center py-2.5 px-4 w-full text-sm text-left hover:bg-gray-50 disabled:text-gray-500 first-of-type:corner-style-t-md last-of-type:corner-style-b-md">
                                         Copy URL
                                     </a>
                                 </div>

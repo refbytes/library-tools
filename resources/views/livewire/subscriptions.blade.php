@@ -1,4 +1,4 @@
-<div class="subscriptions">
+<div class="subscriptions corner-style-{{ $subscriptionSettings->corners }}">
     <div class="mx-auto max-w-7xl">
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-1">
@@ -8,7 +8,7 @@
             </div>
             <div class="col-span-3">
                 <x-subscriptions.search />
-                <x-subscriptions.facets.alphabet :facet="'alpha'" :facets="$facetDistribution" />
+                <x-subscriptions.facets.alphabet :facet="'alpha'" :facets="$facetDistribution" :filters="$filters" />
                 <x-subscriptions.list :subscriptions="$subscriptions" lazy />
             </div>
         </div>

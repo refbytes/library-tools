@@ -10,7 +10,7 @@
                 set expanded(value) {
                     this.active = value ? this.id : null
                 },
-            }" role="region" class="bg-white rounded-lg shadow">
+            }" role="region" class="bg-[var(--boxBackgroundColor)] shadow corner-style-lg">
                 <h2>
                     <button
                         type="button"
@@ -46,7 +46,7 @@
                                                    name="person-1"
                                                    type="checkbox"
                                                    value="{{ $name }}"
-                                                   class="w-4 h-4 text-indigo-600 rounded border-gray-300 focus:ring-indigo-600"
+                                                   class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-600 corner-style"
                                                    wire:key="checkbox-{{ str($name)->slug() }}"
                                             >
                                         </div>
