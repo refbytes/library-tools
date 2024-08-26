@@ -144,7 +144,10 @@ return [
                     ],
                 ],
                 'faceting' => [
-                    'maxValuesPerFacet' => 1500,
+                    'maxValuesPerFacet' => env('MEILISEARCH_MAX_VALUES_PER_FACET', 1500),
+                ],
+                'pagination' => [
+                    'maxTotalHits' => env('MEILISEARCH_MAX_TOTAL_HITS', 5000),
                 ],
             ],
         ],

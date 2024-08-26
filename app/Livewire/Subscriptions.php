@@ -4,13 +4,14 @@ namespace App\Livewire;
 
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Subscriptions extends Component
 {
-    public ?Collection $subscriptions;
+    use WithPagination;
 
     #[Url]
     public ?string $q = '';
@@ -25,30 +26,31 @@ class Subscriptions extends Component
 
     public ?array $facetDistribution = [];
 
-    public ?int $totalhits = 0;
+    public ?int $totalHits = 0;
 
     public function render()
     {
-        $this->search();
-
-        return view('livewire.subscriptions');
+        return view('livewire.subscriptions', [
+            'subscriptions' => $this->search(),
+        ]);
     }
 
     public function search()
     {
-        $this->subscriptions = Subscription::search($this->q, function ($meilisearch, string $q, array $options) {
+        return Subscription::search($this->q, function ($meilisearch, string $q, array $options) {
             $options['facets'] = [
                 'vendor',
                 'formats',
                 'subjects',
                 'alpha',
             ];
+            $options['sort'] = ['name:asc'];
             $options['filter'] = $this->buildFilterQuery();
 
             // https://github.com/meilisearch/meilisearch-php/blob/main/src/Search/SearchResult.php
             $response = $meilisearch->search($q, $options);
             $this->facetDistribution = $response->getFacetDistribution();
-            $this->totalHits = $response->getEstimatedTotalHits();
+            //$this->totalHits = $response->getTotalHits();
 
             return $response;
         })
@@ -59,7 +61,7 @@ class Subscriptions extends Component
                 'proxy',
                 'media',
             ]))
-            ->get();
+            ->paginate(20);
     }
 
     private function buildFilterQuery()
@@ -71,5 +73,16 @@ class Subscriptions extends Component
             ->implode(' AND ');
 
         return $query;
+    }
+
+    #[On('update-alpha')]
+    public function setAlpha($letter)
+    {
+        $this->filters['alpha'] = $letter;
+    }
+
+    public function updatingFilters()
+    {
+        $this->resetPage();
     }
 }

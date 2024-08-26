@@ -8,8 +8,13 @@
             </div>
             <div class="col-span-3 order-[var(--listOrder)]">
                 <x-subscriptions.search />
-                <x-subscriptions.facets.alphabet :facet="'alpha'" :facets="$facetDistribution" :filters="$filters" />
-                <x-subscriptions.list :subscriptions="$subscriptions" lazy />
+                <livewire:subscriptions.alphabet :facet="'vendor'" :facets="$facetDistribution" :filters="$filters" />
+                <x-subscriptions.list :subscriptions="$subscriptions" />
+                <div>
+                    @if(! is_array($subscriptions))
+                        {{ $subscriptions->links() }}
+                    @endif
+                </div>
             </div>
         </div>
     </div>
