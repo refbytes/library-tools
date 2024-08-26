@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Pages\SettingsPage;
+use Illuminate\Support\HtmlString;
 use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 
 class Settings extends SettingsPage
@@ -48,7 +49,8 @@ class Settings extends SettingsPage
                             ->required(),
                         CodeEditor::make('custom_resource_layout')
                             ->label('Custom Resource Layout')
-                            ->visible(fn (Get $get) => $get('resource_layout') === 'custom'),
+                            ->visible(fn (Get $get) => $get('resource_layout') === 'custom')
+                            ->helperText(new HtmlString(\view('components.subscriptions.templates.resource.hint')->render())),
                         Select::make('filter_order')
                             ->label('Filter Position')
                             ->options([

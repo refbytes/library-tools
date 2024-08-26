@@ -1,0 +1,3 @@
+<div>
+    $subscription
+</div>
