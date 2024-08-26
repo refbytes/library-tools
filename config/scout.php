@@ -143,6 +143,9 @@ return [
                         'twoTypos' => 10,
                     ],
                 ],
+                'faceting' => [
+                    'maxValuesPerFacet' => 1500,
+                ],
             ],
         ],
     ],

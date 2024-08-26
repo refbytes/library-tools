@@ -137,7 +137,7 @@ class Subscription extends Model implements Auditable, HasMedia
             'name' => $this->name,
             'alpha' => str($this->name)->take(1),
             'alternate_names' => $this->alternate_names,
-            'vendor' => $this->vendor?->name,
+            'vendor' => trim($this->vendor?->name),
             'description' => $this->description,
             'url' => $this->full_url,
             'keywords' => $this->tags->pluck('name')->toArray(),

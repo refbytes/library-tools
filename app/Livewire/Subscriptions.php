@@ -64,10 +64,12 @@ class Subscriptions extends Component
 
     private function buildFilterQuery()
     {
-        return collect($this->filters)
+        $query = collect($this->filters)
             ->filter(fn ($facet) => ! empty($facet))
             ->map(fn ($values) => ! is_array($values) ? [$values] : $values)
             ->map(fn ($values, $key) => '('.collect($values)->map(fn ($value) => $key.' = "'.trim($value).'"')->implode(' OR ').')')
             ->implode(' AND ');
+
+        return $query;
     }
 }
