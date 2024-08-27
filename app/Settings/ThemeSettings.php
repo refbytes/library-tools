@@ -20,7 +20,11 @@ class ThemeSettings extends Settings
 
     public ?string $primary_button_color;
 
+    public ?string $primary_inverse_button_color;
+
     public ?string $secondary_button_color;
+
+    public ?string $secondary_inverse_button_color;
 
     public ?string $primary_link_color;
 

@@ -48,8 +48,12 @@ class Theme extends SettingsPage
                                     ->label('Secondary Color'),
                                 ColorPicker::make('primary_button_color')
                                     ->label('Primary Button Color'),
+                                ColorPicker::make('primary_inverse_button_color')
+                                    ->label('Primary Inverse Button Color'),
                                 ColorPicker::make('secondary_button_color')
                                     ->label('Secondary Button Color'),
+                                ColorPicker::make('secondary_inverse_button_color')
+                                    ->label('Secondary Inverse Button Color'),
                                 ColorPicker::make('primary_link_color')
                                     ->label('Primary Link Color'),
                                 ColorPicker::make('secondary_link_color')

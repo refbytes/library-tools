@@ -13,7 +13,9 @@ return new class extends SettingsMigration
         $this->migrator->add('theme.primary_color', '');
         $this->migrator->add('theme.secondary_color', '');
         $this->migrator->add('theme.primary_button_color', '');
+        $this->migrator->add('theme.primary_inverse_button_color', '');
         $this->migrator->add('theme.secondary_button_color', '');
+        $this->migrator->add('theme.secondary_inverse_button_color', '');
         $this->migrator->add('theme.primary_link_color', '');
         $this->migrator->add('theme.secondary_link_color', '');
         $this->migrator->add('theme.page_background_color', '');

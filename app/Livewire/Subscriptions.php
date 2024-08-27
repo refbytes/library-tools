@@ -37,7 +37,7 @@ class Subscriptions extends Component
 
     public function search()
     {
-        return Subscription::search($this->q, function ($meilisearch, string $q, array $options) {
+        return Subscription::search($this->q ?? '', function ($meilisearch, string $q, array $options) {
             $options['facets'] = [
                 'vendor',
                 'formats',
