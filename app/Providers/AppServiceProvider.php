@@ -65,6 +65,8 @@ class AppServiceProvider extends ServiceProvider
                 );
             });
 
+        // TODO: Need to add support for dynamically loading Socialite providers based on
+        //      configuration. This is a temporary solution.
         Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
             $event->extendSocialite('saml2', \SocialiteProviders\Saml2\Provider::class);
         });
