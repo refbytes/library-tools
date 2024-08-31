@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'saml2' => [
+        'metadata' => env('SAML2_METADATA_URL'),
+        'sp_entityid' => env('SAML2_ENTITY_ID'),
+    ],
+
 ];

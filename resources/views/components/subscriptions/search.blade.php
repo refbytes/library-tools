@@ -2,7 +2,7 @@
     <div class="py-4">
         <form wire:submit="search"
               method="GET">
-            <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="flex flex-col gap-4 items-center md:flex-row">
                 <input type="search"
                        wire:model="q"
                        name="q"

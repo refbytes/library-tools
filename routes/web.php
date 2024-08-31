@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -25,3 +26,12 @@ Route::middleware([
 
 Route::get(config('system.subscriptions.path'), \App\Livewire\Subscriptions::class)
     ->name('subscriptions');
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('saml2')->redirect();
+});
+
+Route::post('/auth/callback', function () {
+    $user = Socialite::driver('saml2')->stateless()->user();
+    dd($user);
+});
