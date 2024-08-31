@@ -17,7 +17,7 @@ class Authentication extends SettingsPage
 
     protected static ?string $navigationParentItem = 'Users';
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static ?string $navigationIcon = 'heroicon-o-key';
 
     protected static string $settings = AuthenticationSettings::class;
 
