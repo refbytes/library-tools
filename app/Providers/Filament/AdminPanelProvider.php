@@ -31,8 +31,9 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->spa()
             ->navigationItems([
-                NavigationItem::make('Subscriptions')
+                NavigationItem::make('Subscription Management')
                     ->url(fn (): string => Pages\Dashboard::getUrl(panel: 'subscriptions'))
                     ->icon('heroicon-o-rectangle-stack'),
             ])

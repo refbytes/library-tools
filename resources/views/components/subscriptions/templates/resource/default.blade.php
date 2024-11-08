@@ -28,8 +28,8 @@
                                 <div class="flex flex-wrap gap-4">
                                     @foreach($subscription->subjects as $subject)
                                         <span>
-                            {{ $subject->name }}
-                        </span>
+                                            {{ $subject->name }}
+                                        </span>
                                     @endforeach
                                 </div>
                             </div>

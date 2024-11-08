@@ -36,8 +36,13 @@
                                     <div class="flex relative items-start py-2 px-3">
                                         <div class="flex-1 min-w-0 text-sm leading-6">
                                             <label for="person-1"
-                                                   class="font-medium text-gray-900 select-none">
-                                                {{ $name }} ({{ $count }})
+                                                   class="flex gap-2 font-medium text-gray-900 select-none cursor-pointer">
+                                                @if(! empty($icons) && array_key_exists($name, $icons))
+                                                    @svg($icons[$name], 'w-5 h-5 text-gray-500')
+                                                @endif
+                                                <div>
+                                                    {{ $name }} ({{ $count }})
+                                                </div>
                                             </label>
                                         </div>
                                         <div class="flex items-center ml-3 h-6">

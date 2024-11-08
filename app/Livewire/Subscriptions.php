@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Subscriptions\Format;
 use App\Models\Subscriptions\Subscription;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
@@ -26,7 +27,16 @@ class Subscriptions extends Component
 
     public ?array $facetDistribution = [];
 
+    public ?array $icons = [];
+
     public ?int $totalHits = 0;
+
+    public function mount()
+    {
+        $this->icons = Format::select('name', 'icon')
+            ->pluck('icon', 'name')
+            ->toArray();
+    }
 
     public function render()
     {
@@ -78,6 +88,13 @@ class Subscriptions extends Component
     #[On('update-alpha')]
     public function setAlpha($letter)
     {
+        foreach ($this->filters as $key => $value) {
+            if ($key === 'alpha') {
+                continue;
+            }
+            $this->filters[$key] = [];
+        }
+
         $this->filters['alpha'] = $letter;
     }
 

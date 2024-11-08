@@ -27,11 +27,11 @@ class SubscriptionsPanelProvider extends PanelProvider
         return $panel
             ->id('subscriptions')
             ->path('admin/subscriptions')
-            ->spa()
             ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->spa()
             ->navigationGroups([
                 'Settings',
                 'System',

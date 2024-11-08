@@ -25,3 +25,14 @@ Route::middleware([
 
 Route::get(config('system.subscriptions.path'), \App\Livewire\Subscriptions::class)
     ->name('subscriptions');
+
+Route::get(
+    config('system.subscriptions.path').'/'.\App\Enums\SubscriptionType::DATABASE->value.'/{'.\App\Enums\SubscriptionType::DATABASE->value.'}',
+    \App\Http\Controllers\Subscriptions\DatabaseController::class
+)
+    ->name('database.show');
+Route::get(
+    config('system.subscriptions.path').'/'.\App\Enums\SubscriptionType::SOFTWARE->value.'/{'.\App\Enums\SubscriptionType::SOFTWARE->value.'}',
+    \App\Http\Controllers\Subscriptions\SoftwareController::class
+)
+    ->name('software.show');

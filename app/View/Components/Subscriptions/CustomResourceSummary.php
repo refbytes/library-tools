@@ -11,7 +11,8 @@ class CustomResourceSummary extends Component
 {
     public function __construct(
         public SubscriptionSettings $subscriptionSettings,
-        public Subscription $subscription
+        public Subscription $subscription,
+        public ?array $icons,
     ) {}
 
     public function render(): string
@@ -19,6 +20,7 @@ class CustomResourceSummary extends Component
 
         return Blade::render($this->subscriptionSettings->custom_resource_layout, [
             'subscription' => $this->subscription,
+            'icons' => $this->icons,
         ]);
     }
 }
