@@ -44,6 +44,11 @@ class Subscription extends Model implements Auditable, HasMedia
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'is_public' => 'boolean',
+        'is_featured' => 'boolean',
+    ];
+
     protected $childTypes = [
         'database' => Database::class,
         'software' => Software::class,
